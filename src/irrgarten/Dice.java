@@ -1,7 +1,6 @@
 
 package irrgarten;
 import java.util.Random;
-import java.util.ArrayList;
 
 public class Dice {
     
@@ -21,52 +20,62 @@ public class Dice {
         return generator.nextInt(max);
     }
 
-    //public static int whoStarts (int nplayers) {
-       // return generator.nextInt(nplayers);
-   // }
-
-    //public static float randomIntelligence () {
-        //
-    //}
-
-    //public static float randomStrength () {
-        //
-    //}
-
-    //public static boolean resurrectPlayer() {
-        //
-    //}
-
-    //public static int shieldsReward() {
-        //
-    //}
-
-    //public static int healthReward() {
-        //
-    //}
-
-    //public static float weaponPower() {
-        //
-    //}
-
-    //public static float shieldPower() {
-        //
-    //}
-
-    //public static int usesLeft() {
-        //
-    //}
-
-    //public static float intensity(float competence) {
-        //
-    //}
-
-    public static boolean discardElement(int usesLeft) {
-        return false;    
+    public static int whoStarts (int nplayers) {
+        return generator.nextInt(nplayers);
     }
 
-    //public static float weaponPower() {
-        //
-    //}
+    // generator.nextFloat() devuelve un nuenumeromro entre [0,1)
+    public static float randomIntelligence () {
+        return generator.nextFloat() * MAX_INTELLIGENCE;
+    }
+
+    public static float randomStrength () {
+        return generator.nextFloat() * MAX_STRENGTH;    
+    }
+
+    // posible implementacion:
+    public static boolean resurrectPlayer() {
+        return generator.nextFloat() < RESURRECT_PROB;
+    }
+
+    // posible implementacion
+    // next devuelve un valor entre [0, WEAPONS_REWARD-1], por eso pongo + 1
+    public static int weaponsReward() {
+        return generator.nextInt(WEAPONS_REWARD + 1);        
+    }
+
+    // posible implementacion
+    public static int shieldsReward() {
+        return generator.nextInt(SHIELDS_REWARD + 1);
+    }
+
+    // posible implementacion
+    public static int healthReward() {
+        return generator.nextInt(HEALTH_REWARD + 1);
+    }
     
+    public static float weaponPower() {
+        return generator.nextFloat() * MAX_ATTACK;
+    }
+    
+
+    public static float shieldPower() {
+        return generator.nextFloat() * MAX_SHIELD;    
+    }
+
+    public static int usesLeft() {
+        return generator.nextInt(MAX_USES + 1);
+    }    
+
+    public static float intensity(float competence) {
+        return generator.nextFloat() * competence;
+    }    
+
+    public static boolean discardElement(int usesLeft) {
+        if (usesLeft == MAX_USES) 
+            return false;
+        if (usesLeft == 0) 
+            return true;
+        return true; // COMPLETAR!!!!
+    }    
 }
